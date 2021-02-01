@@ -8,7 +8,7 @@ Parse.serverURL = 'https://parseapi.back4app.com';
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200, https://tags-dashboard.web.app');
 
   // Request methods you wish to allow
   res.setHeader(
