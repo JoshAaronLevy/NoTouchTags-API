@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = parseInt(process.env.PORT || 3000);
+const allowedHeaders = ('http://localhost:4200' || 'https://tags-dashboard.web.app');
 const Parse = require('parse/node');
 
 Parse.initialize('w17nTT0TMtIjiH1qzS4r6zAGig6EOAHNpncny7VF', 'kBlbaoq8fd2KblWBNEApECYIEPiCF8CqZyWvXYK2');
@@ -8,8 +9,9 @@ Parse.serverURL = 'https://parseapi.back4app.com';
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Origin', 'https://tags-dashboard.web.app');
+  // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  // res.setHeader('Access-Control-Allow-Origin', 'https://tags-dashboard.web.app');
+  res.setHeader('Access-Control-Allow-Origin', allowedHeaders);
 
   // Request methods you wish to allow
   res.setHeader(
@@ -32,7 +34,6 @@ app.use(function (req, res, next) {
 });
 
 app.get('/tags', (req, res) => {
-  console.log('\nSearching...\n');
   const Tags = Parse.Object.extend('Tags');
   const query = new Parse.Query(Tags);
   query
@@ -46,7 +47,6 @@ app.get('/tags', (req, res) => {
 });
 
 app.get('/tags/:query', (req, res) => {
-  console.log('\nSearching...\n');
   const Tags = Parse.Object.extend('Tags');
   const query = new Parse.Query(Tags);
   query.equalTo('ownerEmail', req.params.query);
