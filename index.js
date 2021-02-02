@@ -1,10 +1,12 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
 const allowedOrigins = ['http://localhost:4200', 'https://tags-dashboard.web.app'];
 const port = parseInt(process.env.PORT || 3000);
 const Parse = require('parse/node');
 
-Parse.initialize('w17nTT0TMtIjiH1qzS4r6zAGig6EOAHNpncny7VF', 'kBlbaoq8fd2KblWBNEApECYIEPiCF8CqZyWvXYK2');
+
+Parse.initialize(process.env.API_KEY, process.env.JAVASCRIPT_KEY);
 Parse.serverURL = 'https://parseapi.back4app.com';
 
 app.use(function (req, res, next) {
