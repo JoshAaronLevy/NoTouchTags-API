@@ -1,10 +1,13 @@
 const express = require('express');
-require('dotenv').config()
+require('dotenv').config();
 const app = express();
-const allowedOrigins = ['http://localhost:4200', 'https://tags-dashboard.web.app'];
+const allowedOrigins = [
+  'http://localhost:4200',
+  'http://localhost:8100',
+  'https://tags-dashboard.web.app',
+];
 const port = parseInt(process.env.PORT || 3000);
 const Parse = require('parse/node');
-
 
 Parse.initialize(process.env.API_KEY, process.env.JAVASCRIPT_KEY);
 Parse.serverURL = 'https://parseapi.back4app.com';
@@ -63,6 +66,10 @@ app.get('/tags/:query', (req, res) => {
     });
 });
 
-app.listen(port)
+app
+  .listen(port)
   .on('error', console.error.bind(console))
-  .on('listening', console.log.bind(console, 'Listening on ' + `http://localhost:${port}`));
+  .on(
+    'listening',
+    console.log.bind(console, 'Listening on ' + `http://localhost:${port}`)
+  );
