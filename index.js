@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const app = express();
 const allowedOrigins = [
+  'http://localhost',
   'http://localhost:4200',
   'http://localhost:8100',
   'https://tags-dashboard.web.app',
