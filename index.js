@@ -40,6 +40,20 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('/login', (req, res) => {
+  const User = Parse.Object.extend('User');
+  const query = new Parse.Query(User);
+  query.equalTo('username', req.params.query);
+  query
+    .find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
 app.get('/tags', (req, res) => {
   const Tags = Parse.Object.extend('Tags');
   const query = new Parse.Query(Tags);
